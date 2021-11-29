@@ -29,10 +29,10 @@ host_os_tags:
 # You can find more information about project type tags in the Step Development Guideline:
 # https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
 #
-# project_type_tags:
-#   - ios
+project_type_tags:
+  - ios
+  - android
 #   - macos
-#   - android
 #   - xamarin
 #   - react-native
 #   - cordova
@@ -64,24 +64,83 @@ toolkit:
 
 
 inputs:
-  - example_step_input: Default Value - you can leave this empty if you want to
+  - kobiton_app_name: $BITRISE_APP_TITLE
     opts:
-      title: "Example Step Input"
-      summary: Summary. No more than 2-3 sentences.
+      title: "App title"
+      summary: Title of the app beign built
       description: |
-        Description of this input.
-
-        Can be Markdown formatted text.
+        App title
       is_expand: true
       is_required: true
-      value_options: []
+  - kobiton_app_path: $BITRISE_SIGNED_APK_PATH
+    opts:
+      title: "App path"
+      summary: Path of the signed app apk or ipa
+      description: |
+        App path
+      is_expand: true
+      is_required: true
+  - kobiton_app_id:
+    opts:
+      title: "App Identifier"
+      summary: App Identifier on Kobiton
+      description: |
+        App Identifier
+      is_expand: true
+      is_required: false
+  - kobiton_app_type: "apk"
+    opts:
+      title: "App Type (ipa or apk)"
+      summary: App Suffix for uploading
+      description: |
+        App Type. put ipa for iOS or apk for Android
+      is_expand: true
+      is_required: true
+      value_options:
+      - "apk"
+      - "ipa"
+  - kobiton_app_access: "public"
+    opts:
+      title: "App accessibility"
+      summary: Specify if you want to keep this app private or global
+      value_options:
+      - "public"
+      - "private"
+  - kobiton_username:
+    opts:
+      title: "Kobiton Username"
+      summary: The user to upload to Kobiton
+      description: |
+        Kobiton Username
+      is_expand: true
+      is_required: true
+      is_sensitive: true
+  - kobiton_api_key:
+    opts:
+      title: "Kobiton API Key/Secret"
+      summary: API key to access Kobiton API
+      description: |
+        Kobiton API Key
+      is_expand: true
+      is_required: true
+      is_sensitive: true
 
 outputs:
-  - EXAMPLE_STEP_OUTPUT:
+  - KOBITON_APP_ID:
     opts:
-      title: "Example Step Output"
-      summary: Summary. No more than 2-3 sentences.
+      title: "App ID"
+      summary: Kobiton App ID
       description: |
-        Description of this output.
-
-        Can be Markdown formatted text.
+        The App ID that the app has been uploaded to Kobiton Repo.
+  - KOBITON_UPLOAD_URL:
+    opts:
+      title: "Upload URL"
+      summary: Amazon S3 Upload URL
+      description: |
+        The URL the app has been uploaded to.
+  - KOBITON_APP_PATH:
+    opts:
+      title: "App Path"
+      summary: Path to the app binary on Kobiton
+      description: |
+        Path to the app binary on Kobiton
