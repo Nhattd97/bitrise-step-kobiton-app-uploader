@@ -8,11 +8,11 @@
 # - Bitrise CLI guides: http://devcenter.bitrise.io/bitrise-cli/
 
 title: |-
-  Kobiton App Uploader
+  Kobiton App Upload
 summary: |
-  Upload an app to Kobiton
+  Uploads an application to Kobiton App Repo
 description: |
-  This step will take an .apk or .ipa file and upload it to the Kobiton app repository
+  This step will take an .apk or .ipa file and upload it to the Kobiton App Repository
 website: https://github.com/Nhattd97/bitrise-step-kobiton-app-uploader
 source_code_url: https://github.com/Nhattd97/bitrise-step-kobiton-app-uploader
 support_url: https://github.com/Nhattd97/bitrise-step-kobiton-app-uploader/issues
@@ -66,34 +66,25 @@ toolkit:
 inputs:
   - kobiton_app_name: $BITRISE_APP_TITLE
     opts:
-      title: "App title"
-      summary: Title of the app beign built
-      description: |
-        App title
+      title: "App Name"
       is_expand: true
       is_required: true
   - kobiton_app_path: $BITRISE_SIGNED_APK_PATH
     opts:
-      title: "App path"
-      summary: Path of the signed app apk or ipa
-      description: |
-        App path
+      title: "App Path"
+      summary: Path to the app .apk or .ipa file
       is_expand: true
       is_required: true
   - kobiton_app_id:
     opts:
-      title: "App Identifier"
-      summary: App Identifier on Kobiton
-      description: |
-        App Identifier
+      title: "App ID"
+      summary: App ID in Kobiton - use this in case you want to upload new version of an existing app in Kobiton
       is_expand: true
       is_required: false
   - kobiton_app_type: "apk"
     opts:
-      title: "App Type (ipa or apk)"
-      summary: App Suffix for uploading
-      description: |
-        App Type. put ipa for iOS or apk for Android
+      title: "App Type"
+      summary: Select ipa for iOS app or apk for Android app
       is_expand: true
       is_required: true
       value_options:
@@ -101,26 +92,20 @@ inputs:
       - "ipa"
   - kobiton_app_access: "public"
     opts:
-      title: "App accessibility"
-      summary: Specify if you want to keep this app private or global
+      title: "App Privacy"
+      summary: You can either to make this app private or available for everyone in the organization
       value_options:
       - "public"
       - "private"
   - kobiton_username:
     opts:
       title: "Kobiton Username"
-      summary: The user to upload to Kobiton
-      description: |
-        Kobiton Username
       is_expand: true
       is_required: true
       is_sensitive: true
   - kobiton_api_key:
     opts:
       title: "Kobiton API Key/Secret"
-      summary: API key to access Kobiton API
-      description: |
-        Kobiton API Key
       is_expand: true
       is_required: true
       is_sensitive: true
